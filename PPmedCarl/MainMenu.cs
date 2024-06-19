@@ -15,10 +15,13 @@ namespace PPmedCarl
 
         public void Menu() 
         {
-            var storeOwerview = new StoreOwerview();
+            var storeOwerview = new StoreOverview();
             while (true)
             {
-                Console.WriteLine("Main Menu:");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Main Menu:\n");
+                Console.ResetColor();
 
                 Console.WriteLine("1. Show Store List");
                 Console.WriteLine("2. Add new store");

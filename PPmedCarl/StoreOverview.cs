@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace PPmedCarl
 {
-    internal class StoreOwerview
+    internal class StoreOverview
     {
         List<Store> stores;
-        public StoreOwerview()
+        public StoreOverview()
         {
             stores = new List<Store>()
             {
@@ -29,7 +29,10 @@ namespace PPmedCarl
         }
         public void StoreStoreOverwiew()
         {
-            Console.WriteLine("Butikknavn:");
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Butikknavn:\n");
+            Console.ResetColor();
             for (int i = 0; i < stores.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. " + stores[i].Name);
@@ -53,39 +56,55 @@ namespace PPmedCarl
         }
         public void EnterStore()
         {
-            Console.WriteLine("Write X to go back to Main menu or ");
+            Console.Write("\nWrite ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("X");
+            Console.ResetColor();
+            Console.Write(" to go back to Main menu or ");
             Console.Write("write list number of the store you want to enter: ");
-            
+
             var userInput = Console.ReadLine();
             if (Int32.TryParse(userInput, out int index))
             {
+                Console.Clear();
                 index = index - 1;
-                Console.WriteLine(stores[index].Name);
-                Console.WriteLine(stores[index].Type);
-                Console.WriteLine(stores[index].PriceClass);
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("Store: ");
+                Console.ResetColor();
+                Console.Write(stores[index].Name + "\n");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("Type: ");
+                Console.ResetColor();
+                Console.Write(stores[index].Type + "\n");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("Price Class: ");
+                Console.ResetColor();
+                Console.Write(stores[index].PriceClass + "\n");
                 Console.ReadKey();
             }
-            else if (userInput == "x".ToUpper()) 
-            { 
-                
+            else if (userInput == "x".ToUpper())
+            {
+
             }
-            
-          
+
+
         }
 
-        public void FindStores() 
+        public void FindStores()
         {
-            Console.Write("price class 1-3: \n");
+            Console.Clear();
+            Console.Write("Desired Price Class (1-3): \n");
             var PC = int.Parse(Console.ReadLine());
             Console.Write("Type of store (Food, Clothes, Toys)");
             var Type = Console.ReadLine();
-            if (PC != null) 
-            
+            if (PC != null)
             {
                 var matchedStores = stores.Where(store => store.PriceClass == PC && store.Type == Type).ToList();
-                foreach (var matchedStore in matchedStores) 
-                { 
-                    Console.WriteLine($"{matchedStore.Name}");
+                int i = 1;
+                foreach (var matchedStore in matchedStores)
+                {
+
+                    Console.WriteLine($"{i}. {matchedStore.Name}");
                 }
                 Console.WriteLine("Write X to go back to Main menu or ");
                 Console.Write("write list number of the store you want to enter: ");
@@ -93,10 +112,20 @@ namespace PPmedCarl
                 var userInput = Console.ReadLine();
                 if (Int32.TryParse(userInput, out int index))
                 {
+                    Console.Clear();
                     index = index - 1;
-                    Console.WriteLine(matchedStores[index].Name);
-                    Console.WriteLine(matchedStores[index].Type);
-                    Console.WriteLine(matchedStores[index].PriceClass);
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("Store: ");
+                    Console.ResetColor();
+                    Console.Write(matchedStores[index].Name + "\n");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("Type: ");
+                    Console.ResetColor();
+                    Console.Write(matchedStores[index].Type + "\n");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("Price Class: ");
+                    Console.ResetColor();
+                    Console.Write(matchedStores[index].PriceClass);
                     Console.ReadKey();
                 }
             }
